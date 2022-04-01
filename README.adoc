@@ -1,8 +1,32 @@
-= Vertx-sns-client
+= Vert.x Web Handler for https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html[HTTP/S-based AWS SNS Endpoints]
 
 image:https://img.shields.io/badge/vert.x-4.2.6-purple.svg[link="https://vertx.io"]
 
 This application was generated using http://start.vertx.io
+
+== Usage
+The handler requires a `BodyHandler` to be registered on the route. Handlers for messages can be
+added for each of the message types supported by SNS. Each handler must return a value to indicate
+how to proceed with the received message. Following combinations are possible:
+
+[options="header"]
+|======================================================
+| Message Type               | Possible Results                 
+| Notification               | Acknowledge, Unsubscribe
+| Subscription Confirmation  | Acknowledge, Ignore     
+| Unsubscribe Confirmation   | Acknowledge, Resubscribe
+|======================================================
+
+```java
+router.post("/sns")
+  .handler(BodyHandler.create(false))
+  .handler(
+    SNSHandler.create(vertx.createHttpClient())
+      .setOnNotification(notification -> /* handle */)
+      .setOnSubscriptionConfirmation(subscriptionConfirmation -> /* handle */)
+      .setOnUnsubscribeConfirmation(unsubscribeConfirmation -> /* handle */)
+  );
+```
 
 == Building
 
