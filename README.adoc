@@ -1,8 +1,12 @@
-= Vert.x Web Handler for https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html[HTTP/S-based AWS SNS Endpoints]
-
 image:https://img.shields.io/badge/vert.x-4.2.6-purple.svg[link="https://vertx.io"]
 
-This application was generated using http://start.vertx.io
+= Vert.x Web Handler for https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html[HTTP/S-based AWS SNS Endpoints]
+
+Easy to use vertx-web handler for AWS SNS messages written in modern Java.
+
+== Requirements
+
+* Java 17+
 
 == Usage
 The handler requires a `BodyHandler` to be registered on the route. Handlers for messages can be
@@ -34,22 +38,3 @@ To launch your tests:
 ```
 ./gradlew clean test
 ```
-
-To package your application:
-```
-./gradlew clean assemble
-```
-
-To run your application:
-```
-./gradlew clean run
-```
-
-== Help
-
-* https://vertx.io/docs/[Vert.x Documentation]
-* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
-* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
-* https://gitter.im/eclipse-vertx/vertx-users[Vert.x Gitter]
-
-
